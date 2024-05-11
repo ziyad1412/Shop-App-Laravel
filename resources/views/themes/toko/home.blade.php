@@ -1,6 +1,7 @@
 @extends('themes.toko.layouts.app')
-
+@include('themes.toko.shared.slider')
 @section('content')
+
 <!-- Popular -->
 <section class="popular">
   <div class="container">

@@ -7,7 +7,11 @@ export default defineConfig({
             input: [
                 "resources/sass/app.scss",
                 "resources/js/app.js",
-                "resources/css/themes/toko/main.css",
+                "resources/views/themes/toko/assets/css/main.css",
+                "resources/views/themes/toko/assets/plugins/jqueryui/jquery-ui.css",
+
+                "resources/views/themes/toko/assets/js/main.js",
+                "resources/views/themes/toko/assets/plugins/jqueryui/jquery-ui.min.js",
             ],
             refresh: true,
         }),

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Shop\App\Http\Controllers\ShopController;
+use Modules\Shop\App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Modules\Shop\App\Http\Controllers\ShopController;
 |
 */
 
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::group([], function () {
     Route::resource('shop', ShopController::class)->names('shop');
 });

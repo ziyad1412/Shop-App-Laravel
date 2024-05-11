@@ -7,12 +7,22 @@
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <title>Toko: Official Site</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/themes/toko/main.css'])
+    @vite([
+        'resources/sass/app.scss',
+        'resources/js/app.js',
+
+        'resources/views/themes/toko/assets/css/main.css',
+        'resources/views/themes/toko/assets/plugins/jqueryui/jquery-ui.css',
+
+        'resources/views/themes/toko/assets/js/main.js',
+        'resources/views/themes/toko/assets/plugins/jqueryui/jquery-ui.min.js',
+    ])
 </head>
 <body>
     @include('themes.toko.shared.header')
-    @include('themes.toko.shared.slider')
     @yield('content')
     @include('themes.toko.shared.footer')
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 </body>
 </html>
