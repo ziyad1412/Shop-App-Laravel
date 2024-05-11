@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Shop\Repositories\Front\Interfaces\CategoryRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
 
 class ProductController extends Controller
@@ -14,12 +15,16 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     protected $productRepository;
+    protected $categoryRepository;
 
-    public function __construct(ProductRepositoryInterface $productRepository)
+
+    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepositoryInterface $categoryRepository)
     {
         parent::__construct();
 
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->data['categories'] = $this->categoryRepository->findAll();
     }
 
     public function index()
@@ -31,6 +36,23 @@ class ProductController extends Controller
         $this->data['products'] = $this->productRepository->findAll($options);
 
         return $this->loadTheme('products.index', $this->data);
+    }
+
+    public function category($categorySlug)
+    {
+        $category = $this->categoryRepository->findBySlug($categorySlug);
+
+        $options = [
+            'per_page' => $this->perPage,
+            'filter' => [
+                'category' => $categorySlug,
+            ]
+        ];
+
+        $this->data['products'] = $this->productRepository->findAll($options);
+        $this->data['category'] = $category;
+
+        return $this->loadTheme('products.category', $this->data);
     }
 
     /**
