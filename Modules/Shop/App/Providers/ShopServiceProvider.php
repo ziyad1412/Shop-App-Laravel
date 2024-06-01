@@ -7,7 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Shop\Repositories\Front\CategoryRepository;
 use Modules\Shop\Repositories\Front\Interfaces\CategoryRepositoryInterface;
 use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
+use Modules\Shop\Repositories\Front\Interfaces\TagRepositoryInterface;
 use Modules\Shop\Repositories\Front\ProductRepository;
+use Modules\Shop\Repositories\Front\TagRepository;
 
 class ShopServiceProvider extends ServiceProvider
 {
@@ -127,6 +129,11 @@ class ShopServiceProvider extends ServiceProvider
         $this->app->bind(
             CategoryRepositoryInterface::class,
             CategoryRepository::class
+        );
+
+        $this->app->bind(
+            TagRepositoryInterface::class,
+            TagRepository::class
         );
     }
 }
